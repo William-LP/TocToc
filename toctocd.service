@@ -1,0 +1,11 @@
+[Unit]
+Description=TocToc - Port Knocking Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/toctocd daemon
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
