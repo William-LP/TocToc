@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  buildAndRelease:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -25,4 +25,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: toctocd-linux-amd64
-          path: dist/toctocd
+          path: dist/toctoc
