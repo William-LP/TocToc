@@ -17,6 +17,15 @@ sudo toctoc protect 22 P@ssW0rd
 # check the port is protected
 sudo toctoc list
 
+# send a knock to open the port
+sudo toctoc knock 127.0.0.1 22 P@ssW0rd
+
+# check the port is now open
+sudo toctoc list
+
+# send a new knock to close it back
+sudo toctoc knock 127.0.0.1 22 P@ssW0rd
+
 # remove toctoc protection
 sudo toctoc unprotect 22
 ```
