@@ -1,4 +1,4 @@
-package cmd
+package cli
 
 import (
 	"fmt"
@@ -46,7 +46,7 @@ Arguments:
   toctoc check example.com 443`,
 	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Checking port %s on %s => %s\n\n", args[1], args[0], Check(args[0], args[1]))
+		Check(args[0], args[1])
 	},
 }
 
@@ -61,7 +61,7 @@ Arguments:
 	Example: `  toctoc protect 22 S€cr3tP@$$w0rd`,
 	Args:    cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Protecting port %s => %s\n\n", args[0], ProtectPort(args[0], args[1]))
+		ProtectPort(args[0], args[1])
 	},
 }
 
@@ -75,7 +75,7 @@ Arguments:
 	Example: `  toctoc unprotect 22 `,
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Unprotecting port %s => %s\n\n", args[0], UnprotectPort(args[0]))
+		UnprotectPort(args[0])
 	},
 }
 
@@ -85,9 +85,7 @@ var InstallCmd = &cobra.Command{
 	Long:    "Install toctoc on your system",
 	Example: `  toctoc install `,
 	Args:    cobra.ExactArgs(0),
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Install => %s\n\n", Install())
-	},
+	Run:     func(cmd *cobra.Command, args []string) { Install() },
 }
 
 var ListCmd = &cobra.Command{
@@ -97,7 +95,7 @@ var ListCmd = &cobra.Command{
 	Example: `  toctoc list `,
 	Args:    cobra.ExactArgs(0),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("List of protected ports\n\n%s\n\n", List())
+		List()
 	},
 }
 
@@ -109,7 +107,7 @@ var RunAsDaemonCmd = &cobra.Command{
 	Example: `  toctoc daemon `,
 	Args:    cobra.ExactArgs(0),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("Starting TocToc\n\n%s\n\n", RunAsDaemon(&iptablesManager))
+		fmt.Printf("Starting TocToc server agent...\n\n%s\n\n", RunServerAgent())
 	},
 }
 
@@ -126,6 +124,6 @@ Arguments:
   toctoc knock example.com 8080 S€cr3tP@$$w0rd`,
 	Args: cobra.ExactArgs(3),
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Printf("%s\n\n", Knock(args[0], args[1], args[2]))
+		Knock(args[0], args[1], args[2])
 	},
 }

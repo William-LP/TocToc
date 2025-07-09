@@ -1,7 +1,7 @@
 package main
 
-import "github.com/William-LP/toctoc/cmd"
+import "github.com/William-LP/toctoc/cli"
 
 func main() {
-	cmd.Execute()
+	cli.Execute()
 }
