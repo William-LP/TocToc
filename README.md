@@ -5,11 +5,8 @@ TocToc - A Simple Port Knocking CLI
 ## Quick Start
 
 ```bash
-# install
-go install github.com/William-LP/TocToc@latest
-
-# setup TocToc
-sudo toctoc install
+# install (if you are brave enough)
+curl -sL https://raw.githubusercontent.com/William-LP/TocToc/refs/heads/main/install.sh | bash
 
 # protect SSH port with a strong password
 sudo toctoc protect 22 P@ssW0rd
