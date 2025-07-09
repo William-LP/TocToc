@@ -7,6 +7,10 @@ on:
 jobs:
   buildAndRelease:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -21,8 +25,11 @@ jobs:
           mkdir -p dist
           CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o dist/toctoc .
 
-      - name: Upload binary as artifact
-        uses: actions/upload-artifact@v4
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: toctocd-linux-amd64
-          path: dist/toctoc
+          name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          files: dist/toctoc
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
